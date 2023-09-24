@@ -59,7 +59,7 @@ def list_audio_device():
     try:
         audioDeviceList = sd.query_devices()
     except Exception as e:
-        logger.error("[Voice Changer] ex:query_devices")
+        logger.error("[Lol] ex:query_devices")
         logger.exception(e)
         raise e
 
