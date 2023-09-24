@@ -157,14 +157,14 @@ class ServerDevice:
             outdata[:] = np.repeat(out_wav, outputChannels).reshape(-1, outputChannels) / 32768.0
             outdata[:] = outdata * self.settings.serverMonitorAudioGain
         except Exception as e:
-            print("[Voice Changer] ex:", e)
+            print("[Lol] ex:", e)
 
     def audioInput_callback_outQueue(self, indata: np.ndarray, frames, times, status):
         try:
             out_wav = self._processDataWithTime(indata)
             self.outQueue.put(out_wav)
         except Exception as e:
-            print("[Voice Changer][ServerDevice][audioInput_callback] ex:", e)
+            print("[Lol][ServerDevice][audioInput_callback] ex:", e)
             # import traceback
             # traceback.print_exc()
 
@@ -174,7 +174,7 @@ class ServerDevice:
             self.outQueue.put(out_wav)
             self.monQueue.put(out_wav)
         except Exception as e:
-            print("[Voice Changer][ServerDevice][audioInput_callback] ex:", e)
+            print("[Lol][ServerDevice][audioInput_callback] ex:", e)
             # import traceback
             # traceback.print_exc()
 
@@ -187,7 +187,7 @@ class ServerDevice:
             outdata[:] = np.repeat(out_wav, outputChannels).reshape(-1, outputChannels) / 32768.0
             outdata[:] = outdata * self.settings.serverOutputAudioGain
         except Exception as e:
-            print("[Voice Changer][ServerDevice][audioOutput_callback]  ex:", e)
+            print("[Lol][ServerDevice][audioOutput_callback]  ex:", e)
             # import traceback
             # traceback.print_exc()
 
@@ -200,7 +200,7 @@ class ServerDevice:
             outdata[:] = np.repeat(mon_wav, outputChannels).reshape(-1, outputChannels) / 32768.0
             outdata[:] = outdata * self.settings.serverMonitorAudioGain
         except Exception as e:
-            print("[Voice Changer][ServerDevice][audioMonitor_callback]  ex:", e)
+            print("[Lol][ServerDevice][audioMonitor_callback]  ex:", e)
             # import traceback
             # traceback.print_exc()
 
@@ -256,7 +256,7 @@ class ServerDevice:
                     if changed:
                         break
                     time.sleep(2)
-                    print(f"[Voice Changer] server audio performance {self.performance}")
+                    print(f"[Lol] server audio performance {self.performance}")
                     print(f"                status: started:{self.settings.serverAudioStated}, model_sr:{self.currentModelSamplingRate}, chunk:{self.currentInputChunkNum}")
                     print(f"                input  : id:{self.settings.serverInputDeviceId}, sr:{self.settings.serverInputAudioSampleRate}, ch:{inputMaxChannel}")
                     print(f"                output : id:{self.settings.serverOutputDeviceId}, sr:{self.settings.serverOutputAudioSampleRate}, ch:{outputMaxChannel}")
@@ -286,7 +286,7 @@ class ServerDevice:
                     if changed:
                         break
                     time.sleep(2)
-                    print(f"[Voice Changer] server audio performance {self.performance}")
+                    print(f"[Lol] server audio performance {self.performance}")
                     print(f"                status: started:{self.settings.serverAudioStated}, model_sr:{self.currentModelSamplingRate}, chunk:{self.currentInputChunkNum}")
                     print(f"                input  : id:{self.settings.serverInputDeviceId}, sr:{self.settings.serverInputAudioSampleRate}, ch:{inputMaxChannel}")
                     print(f"                output : id:{self.settings.serverOutputDeviceId}, sr:{self.settings.serverOutputAudioSampleRate}, ch:{outputMaxChannel}")
@@ -325,7 +325,7 @@ class ServerDevice:
                         if changed:
                             break
                         time.sleep(2)
-                        print(f"[Voice Changer] server audio performance {self.performance}")
+                        print(f"[Lol] server audio performance {self.performance}")
                         print(f"                status: started:{self.settings.serverAudioStated}, model_sr:{self.currentModelSamplingRate}, chunk:{self.currentInputChunkNum}")
                         print(f"                input  : id:{self.settings.serverInputDeviceId}, sr:{self.settings.serverInputAudioSampleRate}, ch:{inputMaxChannel}")
                         print(f"                output : id:{self.settings.serverOutputDeviceId}, sr:{self.settings.serverOutputAudioSampleRate}, ch:{outputMaxChannel}")
@@ -385,7 +385,7 @@ class ServerDevice:
                 try:
                     self.currentModelSamplingRate = self.serverDeviceCallbacks.get_processing_sampling_rate()
                 except Exception as e:
-                    print("[Voice Changer] ex: get_processing_sampling_rate", e)
+                    print("[Lol] ex: get_processing_sampling_rate", e)
                     time.sleep(2)
                     continue
 
@@ -472,7 +472,7 @@ class ServerDevice:
                         raise RuntimeError(f"Unknown ServerDeviceMode: {serverDeviceMode}")
 
                 except Exception as e:
-                    print("[Voice Changer] processing, ex:", e)
+                    print("[Lol] processing, ex:", e)
                     import traceback
                     traceback.print_exc()
                     time.sleep(2)
