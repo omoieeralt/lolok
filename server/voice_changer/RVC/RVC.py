@@ -46,7 +46,7 @@ class RVC(VoiceChangerModel):
         try:
             self.pipeline = createPipeline(self.slotInfo, self.settings.gpu, self.settings.f0Detector)
         except PipelineCreateException as e:  # NOQA
-            logger.error("[Voice Changer] pipeline create failed. check your model is valid.")
+            logger.error("[Lol] pipeline create failed. check your model is valid.")
             return
 
         # その他の設定
@@ -139,7 +139,7 @@ class RVC(VoiceChangerModel):
 
     def inference(self, data):
         if self.pipeline is None:
-            logger.info("[Voice Changer] Pipeline is not initialized.111")
+            logger.info("[Lol] Pipeline is not initialized.111")
             raise PipelineNotInitializedException()
         audio = data[0]
         pitchf = data[1]
@@ -217,7 +217,7 @@ class RVC(VoiceChangerModel):
         modelSlot = self.slotInfo
 
         if modelSlot.isONNX:
-            logger.warn("[Voice Changer] export2onnx, No pyTorch filepath.")
+            logger.warn("[Lol] export2onnx, No pyTorch filepath.")
             return {"status": "ng", "path": ""}
 
         if self.pipeline is not None:
