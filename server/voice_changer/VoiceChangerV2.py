@@ -122,7 +122,7 @@ class VoiceChangerV2(VoiceChangerIF):
 
     def update_settings(self, key: str, val: Any):
         if self.voiceChanger is None:
-            logger.warn("[Voice Changer] Voice Changer is not selected.")
+            logger.warn("[Lol] Voice Changer is not selected.")
             return self.get_info()
 
         if key == "serverAudioStated" and val == 0:
@@ -259,7 +259,7 @@ class VoiceChangerV2(VoiceChangerIF):
 
                         result = output_wav
                     else:
-                        logger.info("[Voice Changer] warming up... generating sola buffer.")
+                        logger.info("[Lol] warming up... generating sola buffer.")
                         result = np.zeros(4096).astype(np.int16)
 
                     if hasattr(self, "sola_buffer") is True and sola_offset < sola_search_frame:
@@ -297,31 +297,31 @@ class VoiceChangerV2(VoiceChangerIF):
             return outputData, perf
 
         except NoModeLoadedException as e:
-            logger.warn(f"[Voice Changer] [Exception], {e}")
+            logger.warn(f"[Lol] [Exception], {e}")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except ONNXInputArgumentException as e:
-            logger.warn(f"[Voice Changer] [Exception] onnx are waiting valid input., {e}")
+            logger.warn(f"[Lol] [Exception] onnx are waiting valid input., {e}")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except HalfPrecisionChangingException:
-            logger.warn("[Voice Changer] Switching model configuration....")
+            logger.warn("[Lol] Switching model configuration....")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except NotEnoughDataExtimateF0:
-            logger.warn("[Voice Changer] warming up... waiting more data.")
+            logger.warn("[Lol] warming up... waiting more data.")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except DeviceChangingException as e:
-            logger.warn(f"[Voice Changer] embedder: {e}")
+            logger.warn(f"[Lol] embedder: {e}")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except VoiceChangerIsNotSelectedException:
-            logger.warn("[Voice Changer] Voice Changer is not selected. Wait a bit and if there is no improvement, please re-select vc.")
+            logger.warn("[Lol] Voice Changer is not selected. Wait a bit and if there is no improvement, please re-select vc.")
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except DeviceCannotSupportHalfPrecisionException:
             # RVC.pyでfallback処理をするので、ここはダミーデータ返すだけ。
             return np.zeros(1).astype(np.int16), [0, 0, 0]
         except PipelineNotInitializedException:
-            logger.warn("[Voice Changer] Waiting generate pipeline...")
+            logger.warn("[Lol] Waiting generate pipeline...")
             return np.zeros(1024).astype(np.int16), [0, 0, 0]
         except Exception as e:
-            logger.warn(f"[Voice Changer] VC PROCESSING EXCEPTION!!! {e}")
+            logger.warn(f"[Lol] VC PROCESSING EXCEPTION!!! {e}")
             logger.exception(e)
             return np.zeros(1).astype(np.int16), [0, 0, 0]
 
@@ -332,7 +332,7 @@ class VoiceChangerV2(VoiceChangerIF):
 
     def merge_models(self, request: str):
         if self.voiceChanger is None:
-            logger.info("[Voice Changer] Voice Changer is not selected.")
+            logger.info("[Lol] Voice Changer is not selected.")
             return
         self.voiceChanger.merge_models(request)
         return self.get_info()
