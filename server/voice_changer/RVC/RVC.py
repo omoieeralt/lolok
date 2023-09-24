@@ -22,7 +22,7 @@ logger = VoiceChangaerLogger.get_instance().getLogger()
 
 class RVC(VoiceChangerModel):
     def __init__(self, params: VoiceChangerParams, slotInfo: RVCModelSlot):
-        logger.info("[Voice Changer] [RVC] Creating instance ")
+        logger.info("[Lol] [Lmao] Creating instance ")
         self.deviceManager = DeviceManager.get_instance()
         EmbedderManager.initialize(params)
         PitchExtractorManager.initialize(params)
@@ -53,7 +53,7 @@ class RVC(VoiceChangerModel):
         self.settings.tran = self.slotInfo.defaultTune
         self.settings.indexRatio = self.slotInfo.defaultIndexRatio
         self.settings.protect = self.slotInfo.defaultProtect
-        logger.info("[Voice Changer] [RVC] Initializing... done")
+        logger.info("[Lol] [Lmao] Initializing... done")
 
     def update_settings(self, key: str, val: int | float | str):
         logger.info(f"[Voice Changer][RVC]: update_settings {key}:{val}")
