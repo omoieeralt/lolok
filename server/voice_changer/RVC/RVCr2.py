@@ -50,14 +50,14 @@ class RVCr2(VoiceChangerModel):
         try:
             self.pipeline = createPipeline(self.params, self.slotInfo, self.settings.gpu, self.settings.f0Detector)
         except PipelineCreateException as e:  # NOQA
-            logger.error("[Voice Changer] pipeline create failed. check your model is valid.")
+            logger.error("[Lol] pipeline create failed. check your model is valid.")
             return
 
         # その他の設定
         self.settings.tran = self.slotInfo.defaultTune
         self.settings.indexRatio = self.slotInfo.defaultIndexRatio
         self.settings.protect = self.slotInfo.defaultProtect
-        logger.info("[Voice Changer] [RVC] Initializing... done")
+        logger.info("[Lol] [RVC] Initializing... done")
 
     def setSamplingRate(self, inputSampleRate, outputSampleRate):
         self.inputSampleRate = inputSampleRate
@@ -151,7 +151,7 @@ class RVCr2(VoiceChangerModel):
 
     def inference(self, receivedData: AudioInOut, crossfade_frame: int, sola_search_frame: int):
         if self.pipeline is None:
-            logger.info("[Voice Changer] Pipeline is not initialized.")
+            logger.info("[Lol] Pipeline is not initialized.")
             raise PipelineNotInitializedException()
 
         # 処理は16Kで実施(Pitch, embed, (infer))
@@ -254,7 +254,7 @@ class RVCr2(VoiceChangerModel):
         modelSlot = self.slotInfo
 
         if modelSlot.isONNX:
-            logger.warn("[Voice Changer] export2onnx, No pyTorch filepath.")
+            logger.warn("[Lol] export2onnx, No pyTorch filepath.")
             return {"status": "ng", "path": ""}
 
         if self.pipeline is not None:
