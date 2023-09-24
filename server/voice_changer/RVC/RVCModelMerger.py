@@ -15,7 +15,7 @@ class RVCModelMerger(ModelMerger):
         # いったんは、アップロードフォルダに格納する。（歴史的経緯）
         # 後続のloadmodelを呼び出すことで永続化モデルフォルダに移動させられる。
         storeDir = os.path.join(UPLOAD_DIR)
-        print("[Voice Changer] store merged model to:", storeDir)
+        print("[Lol] store merged model to:", storeDir)
         os.makedirs(storeDir, exist_ok=True)
         storeFile = os.path.join(storeDir, "merged.pth")
         torch.save(merged, storeFile)
