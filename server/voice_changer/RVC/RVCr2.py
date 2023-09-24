@@ -44,7 +44,7 @@ class RVCr2(VoiceChangerModel):
         # self.initialize()
 
     def initialize(self):
-        logger.info("[Voice Changer][RVCr2] Initializing... ")
+        logger.info("[Lol][Lmaor2] Initializing... ")
 
         # pipelineの生成
         try:
