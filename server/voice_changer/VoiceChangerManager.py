@@ -72,7 +72,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
     # VoiceChangerManager
     ############################
     def __init__(self, params: VoiceChangerParams):
-        logger.info("[Voice Changer] VoiceChangerManager initializing...")
+        logger.info("[Lol] VoiceChangerManager initializing...")
         self.params = params
         self.voiceChanger: VoiceChanger = None
         self.settings: VoiceChangerManagerSettings = VoiceChangerManagerSettings()
@@ -96,7 +96,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
             self.update_settings("gpu", 0)
         # for key, val in self.stored_setting.items():
         #     self.update_settings(key, val)
-        logger.info("[Voice Changer] VoiceChangerManager initializing... done.")
+        logger.info("[Lol] VoiceChangerManager initializing... done.")
 
     def store_setting(self, key: str, val: str | int | float):
         saveItemForServerDevice = ["enableServerAudio", "serverAudioSampleRate", "serverInputDeviceId", "serverOutputDeviceId", "serverMonitorDeviceId", "serverReadChunkSize", "serverInputAudioGain", "serverOutputAudioGain"]
@@ -134,7 +134,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
     def loadModel(self, params: LoadModelParams):
         if params.isSampleMode:
             # サンプルダウンロード
-            logger.info(f"[Voice Changer] sample download...., {params}")
+            logger.info(f"[Lol] sample download...., {params}")
             downloadSample(self.params.sample_mode, params.sampleId, self.params.model_dir, params.slot, params.params)
             self.modelSlotManager.getAllSlotInfo(reload=True)
             info = {"status": "OK"}
@@ -230,7 +230,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
     def generateVoiceChanger(self, val: int):
         slotInfo = self.modelSlotManager.get_slot_info(val)
         if slotInfo is None:
-            logger.info(f"[Voice Changer] model slot is not found {val}")
+            logger.info(f"[Lol] model slot is not found {val}")
             return
         elif slotInfo.voiceChangerType == "RVC":
             logger.info("................RVC")
@@ -289,7 +289,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
             self.voiceChanger = VoiceChangerV2(self.params)
             self.voiceChanger.setModel(self.voiceChangerModel)
         else:
-            logger.info(f"[Voice Changer] unknown voice changer model: {slotInfo.voiceChangerType}")
+            logger.info(f"[Lol] unknown voice changer model: {slotInfo.voiceChangerType}")
             if hasattr(self, "voiceChangerModel"):
                 del self.voiceChangerModel
             return
@@ -307,7 +307,7 @@ class VoiceChangerManager(ServerDeviceCallbacks):
             newVal = int(val)
             if key == "modelSlotIndex":
                 newVal = newVal % 1000
-                logger.info(f"[Voice Changer] model slot is changed {self.settings.modelSlotIndex} -> {newVal}")
+                logger.info(f"[Lol] model slot is changed {self.settings.modelSlotIndex} -> {newVal}")
                 self.generateVoiceChanger(newVal)
                 # キャッシュ設定の反映
                 for k, v in self.stored_setting.items():
