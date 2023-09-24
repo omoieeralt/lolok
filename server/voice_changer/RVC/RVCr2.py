@@ -65,7 +65,7 @@ class RVCr2(VoiceChangerModel):
         # self.initialize()
 
     def update_settings(self, key: str, val: int | float | str):
-        logger.info(f"[Voice Changer][RVC]: update_settings {key}:{val}")
+        logger.info(f"[Lol][Lmao]: update_settings {key}:{val}")
         if key in self.settings.intData:
             setattr(self.settings, key, int(val))
             if key == "gpu":
